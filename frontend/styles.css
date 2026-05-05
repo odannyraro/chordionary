@@ -1,0 +1,448 @@
+:root {
+    --bg-color: #0f172a;
+    --panel-bg: rgba(30, 41, 59, 0.7);
+    --panel-border: rgba(148, 163, 184, 0.1);
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --accent-glow: #3b82f6;
+    --accent-glow-secondary: #8b5cf6;
+    --btn-primary: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    --btn-hover: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+    --wood-color: #3e2723;
+    --string-color: #cbd5e1;
+    --string-glow: rgba(203, 213, 225, 0.5);
+    --fret-color: #64748b;
+    --nut-color: #e2e8f0;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 2rem;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Background Effects */
+.background-glow {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(120px);
+    z-index: -1;
+    opacity: 0.4;
+    animation: float 10s infinite ease-in-out alternate;
+}
+
+.glow-1 {
+    width: 400px;
+    height: 400px;
+    background: var(--accent-glow);
+    top: -100px;
+    left: -100px;
+}
+
+.glow-2 {
+    width: 300px;
+    height: 300px;
+    background: var(--accent-glow-secondary);
+    bottom: -50px;
+    right: -50px;
+    animation-delay: -5s;
+}
+
+@keyframes float {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(30px, 50px); }
+}
+
+/* Layout */
+.container {
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    z-index: 1;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.logo {
+    font-family: 'Outfit', sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+
+.logo .highlight {
+    background: linear-gradient(to right, #60a5fa, #a78bfa);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
+}
+
+/* Glass Panel */
+.glass-panel {
+    background: var(--panel-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--panel-border);
+    border-radius: 24px;
+    padding: 2.5rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+/* Guitar Visual Section */
+.guitar-neck-wrapper {
+    margin-bottom: 2.5rem;
+}
+
+.guitar-headstock {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.tuner-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    width: 120px;
+}
+
+.tuner-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.tuner-group label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.tuner-select {
+    background: rgba(15, 23, 42, 0.6);
+    color: var(--text-primary);
+    border: 1px solid var(--panel-border);
+    border-radius: 6px;
+    padding: 4px 8px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.2s;
+    appearance: none;
+    text-align: center;
+    width: 48px;
+}
+
+.tuner-select:focus, .tuner-select:hover {
+    border-color: var(--accent-glow);
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+}
+
+.guitar-nut {
+    width: 12px;
+    height: 200px;
+    background: var(--nut-color);
+    border-radius: 4px;
+    box-shadow: inset -2px 0 4px rgba(0,0,0,0.2);
+}
+
+.guitar-strings-visual {
+    flex-grow: 1;
+    height: 200px;
+    background: linear-gradient(90deg, #2d1810 0%, #1a0f0a 100%);
+    border-radius: 0 8px 8px 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 10px 0;
+    overflow: hidden;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+}
+
+/* Frets */
+.guitar-strings-visual::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 70px,
+        var(--fret-color) 70px,
+        var(--fret-color) 74px
+    );
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.string-line {
+    width: 100%;
+    background: var(--string-color);
+    box-shadow: 0 1px 3px var(--string-glow);
+    position: relative;
+}
+
+.string-line.s6 { height: 3px; }
+.string-line.s5 { height: 2.5px; }
+.string-line.s4 { height: 2px; }
+.string-line.s3 { height: 1.5px; }
+.string-line.s2 { height: 1.2px; }
+.string-line.s1 { height: 1px; }
+
+/* Input Section */
+.chord-input-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.input-label {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.input-group {
+    display: flex;
+    gap: 1rem;
+}
+
+.chord-input {
+    flex-grow: 1;
+    background: rgba(15, 23, 42, 0.5);
+    border: 1px solid var(--panel-border);
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    color: var(--text-primary);
+    font-size: 1.2rem;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.chord-input:focus {
+    outline: none;
+    border-color: var(--accent-glow);
+    background: rgba(15, 23, 42, 0.8);
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+.primary-btn {
+    background: var(--btn-primary);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 0 2rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.primary-btn:hover {
+    background: var(--btn-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px -10px rgba(59, 130, 246, 0.5);
+}
+
+.primary-btn:active {
+    transform: translateY(0);
+}
+
+.error-msg {
+    color: #ef4444;
+    font-size: 0.9rem;
+    min-height: 1.2rem;
+}
+
+/* Results Section */
+.hidden {
+    display: none !important;
+}
+
+.results-section {
+    animation: fadeIn 0.5s ease;
+}
+
+.results-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+}
+
+.shapes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Dynamically Generated Shapes Cards */
+.shape-card {
+    background: var(--panel-bg);
+    border: 1px solid var(--panel-border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.shape-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.shape-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: #cbd5e1;
+}
+
+/* Chord Diagram Visualization */
+.chord-diagram {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.diagram-grid-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.diagram-fret-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-top: 5px;
+    width: 20px;
+    text-align: right;
+}
+
+.diagram-grid {
+    position: relative;
+    width: 100px;
+    height: 150px; /* 5 frets of 30px */
+    border-left: 2px solid var(--string-color);
+    border-right: 2px solid var(--string-color);
+    border-bottom: 2px solid var(--fret-color);
+    border-top: 2px solid var(--fret-color); /* Default top fret */
+    background-image: 
+        repeating-linear-gradient(90deg, transparent, transparent 18px, var(--string-color) 18px, var(--string-color) 20px),
+        repeating-linear-gradient(180deg, transparent, transparent 28px, var(--fret-color) 28px, var(--fret-color) 30px);
+}
+
+.diagram-grid.has-nut {
+    border-top: 6px solid var(--text-primary);
+}
+
+.diagram-dot {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background: var(--text-primary); /* Monochromatic filled circle */
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+.diagram-dot.tonic-dot {
+    background: var(--bg-color); /* Hollow */
+    border: 3px solid var(--text-primary); /* Thick monochromatic outline */
+}
+
+.diagram-barre {
+    position: absolute;
+    height: 16px;
+    border-radius: 8px;
+    transform: translateY(-50%);
+    background: var(--bg-color); /* Hollow aesthetic like the tonic */
+    border: 3px solid var(--text-primary); /* Thick monochromatic outline */
+    z-index: 2;
+}
+
+.diagram-status-row {
+    position: relative;
+    width: 100px;
+    height: 20px;
+    margin-top: 0.5rem;
+}
+
+/* Let's align status row perfectly with the grid strings */
+.chord-diagram > .diagram-status-row {
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.diagram-status {
+    position: absolute;
+    transform: translateX(-50%);
+    width: 20px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--text-secondary); /* Monochromatic color for all status icons */
+}
+
+
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .guitar-headstock {
+        flex-direction: column;
+    }
+    .tuner-row {
+        width: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+    .guitar-nut, .guitar-strings-visual {
+        display: none; /* Hide visual neck on small screens */
+    }
+    .input-group {
+        flex-direction: column;
+    }
+    .primary-btn {
+        padding: 1rem;
+        justify-content: center;
+    }
+}

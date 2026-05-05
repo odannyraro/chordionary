@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chordionary - Premium Guitar Chord Finder</title>
+    <meta name="description" content="A premium guitar chord finder that connects to a C++ backend.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="background-glow glow-1"></div>
+    <div class="background-glow glow-2"></div>
+    
+    <main class="container">
+        <header class="header">
+            <h1 class="logo">Chord<span class="highlight">ionary</span></h1>
+            <p class="subtitle">Discover chords dynamically</p>
+        </header>
+
+        <section class="glass-panel input-section">
+            <div class="guitar-neck-wrapper">
+                <div class="guitar-headstock">
+                    <!-- Tuners for the 6 strings -->
+                    <div class="tuner-row">
+                        <div class="tuner-group">
+                            <label for="string1">1st (High)</label>
+                            <select id="string1" class="tuner-select">
+                                <option value="G">G</option>
+                                <option value="F#">F#</option>
+                                <option value="F">F</option>
+                                <option value="E" selected>E</option>
+                                <option value="D#">D#</option>
+                                <option value="D">D</option>
+                                <option value="C#">C#</option>
+                                <option value="C">C</option>
+                                <option value="B">B</option>
+                                <option value="A#">A#</option>
+                                <option value="A">A</option>
+                                <option value="G#">G#</option>
+                            </select>
+                        </div>
+                        <div class="tuner-group">
+                            <label for="string2">2nd</label>
+                            <select id="string2" class="tuner-select">
+                                <option value="D">D</option>
+                                <option value="C#">C#</option>
+                                <option value="C">C</option>
+                                <option value="B" selected>B</option>
+                                <option value="A#">A#</option>
+                                <option value="A">A</option>
+                                <option value="G#">G#</option>
+                                <option value="G">G</option>
+                                <option value="F#">F#</option>
+                                <option value="F">F</option>
+                                <option value="E">E</option>
+                                <option value="D#">D#</option>
+                            </select>
+                        </div>
+                        <div class="tuner-group">
+                            <label for="string3">3rd</label>
+                            <select id="string3" class="tuner-select">
+                                <option value="A#">A#</option>
+                                <option value="A">A</option>
+                                <option value="G#">G#</option>
+                                <option value="G" selected>G</option>
+                                <option value="F#">F#</option>
+                                <option value="F">F</option>
+                                <option value="E">E</option>
+                                <option value="D#">D#</option>
+                                <option value="D">D</option>
+                                <option value="C#">C#</option>
+                                <option value="C">C</option>
+                                <option value="B">B</option>
+                            </select>
+                        </div>
+                        <div class="tuner-group">
+                            <label for="string4">4th</label>
+                            <select id="string4" class="tuner-select">
+                                <option value="F">F</option>
+                                <option value="E">E</option>
+                                <option value="D#" >D#</option>
+                                <option value="D" selected>D</option>
+                                <option value="C#">C#</option>
+                                <option value="C">C</option>
+                                <option value="B">B</option>
+                                <option value="A#">A#</option>
+                                <option value="A">A</option>
+                                <option value="G#">G#</option>
+                                <option value="G">G</option>
+                                <option value="F#">F#</option>
+                            </select>
+                        </div>
+                        <div class="tuner-group">
+                            <label for="string5">5th</label>
+                            <select id="string5" class="tuner-select">
+                                <option value="B">B</option>
+                                <option value="A#" >A#</option>
+                                <option value="A" selected>A</option>
+                                <option value="G#">G#</option>
+                                <option value="G">G</option>
+                                <option value="F#">F#</option>
+                                <option value="F">F</option>
+                                <option value="E">E</option>
+                                <option value="D#">D#</option>
+                                <option value="D">D</option>
+                                <option value="C#">C#</option>
+                                <option value="C">C</option>
+                            </select>
+                        </div>
+                        <div class="tuner-group">
+                            <label for="string6">6th (Low)</label>
+                            <select id="string6" class="tuner-select">
+                                <option value="E" selected>E</option>
+                                <option value="D#">D#</option>
+                                <option value="D">D</option>
+                                <option value="C#">C#</option>
+                                <option value="C">C</option>
+                                <option value="B">B</option>
+                                <option value="A#">A#</option>
+                                <option value="A">A</option>
+                                <option value="G#">G#</option>
+                                <option value="G">G</option>
+                                <option value="F#">F#</option>
+                                <option value="F">F</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="guitar-nut"></div>
+                    <div class="guitar-strings-visual">
+                        <div class="string-line s1"></div>
+                        <div class="string-line s2"></div>
+                        <div class="string-line s3"></div>
+                        <div class="string-line s4"></div>
+                        <div class="string-line s5"></div>
+                        <div class="string-line s6"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chord-input-wrapper">
+                <label for="chordInput" class="input-label">Enter Chord Notation</label>
+                <div class="input-group">
+                    <input type="text" id="chordInput" class="chord-input" placeholder="e.g. Cmaj7, Am, G/B" autocomplete="off">
+                    <button id="findChordBtn" class="primary-btn">
+                        <span>Find Shapes</span>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </button>
+                </div>
+                <div id="errorMsg" class="error-msg"></div>
+            </div>
+        </section>
+
+        <section id="resultsSection" class="results-section hidden">
+            <h2 class="results-title">Available Shapes</h2>
+            <div id="shapesContainer" class="shapes-grid">
+                <!-- Shapes will be injected here dynamically -->
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
